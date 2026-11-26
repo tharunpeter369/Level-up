@@ -89,6 +89,7 @@ We apply migrations with **our own script** (`src/db/migrate.ts`, which calls `d
 - **Editing an applied migration** instead of adding a new one.
 - **Not reading generated SQL**: renames can be generated as "drop column + add column", which **deletes data**.
 - **Creating a new pool per request**: create one pool at startup, close it at shutdown.
+- **No `'error'` listener on the pool**: when Postgres restarts, idle pooled connections die and the pool emits `'error'`. In Node, an `'error'` event nobody listens to **crashes the process**. We hit exactly this in Task 4; `createDb()` now always attaches a listener (and an integration test kills a connection on purpose to prove it).
 - **Forgetting the migrations in production**: the deploy must run `db:migrate` before starting the new code.
 
 ## Check yourself

@@ -1,6 +1,6 @@
 import { PostgreSqlContainer, type StartedPostgreSqlContainer } from "@testcontainers/postgresql";
 import { sql } from "drizzle-orm";
-import { afterAll, beforeAll, describe, expect, it } from "vitest";
+import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
 import { buildApp } from "../app.ts";
 import { pingDatabase } from "../modules/health/health.repository.ts";
 import { createDb } from "./client.ts";
@@ -9,7 +9,7 @@ import { runMigrations } from "./migrate.ts";
 // Same image as compose.yaml, so tests match local development.
 const POSTGRES_IMAGE = "pgvector/pgvector:pg18";
 
-describe("database migrations (real Postgres via Testcontainers)", () => {
+describe("database (real Postgres via Testcontainers)", () => {
   let container: StartedPostgreSqlContainer | undefined;
   let databaseUrl: string;
 
@@ -51,6 +51,30 @@ describe("database migrations (real Postgres via Testcontainers)", () => {
       expect(result.rows[0]?.count).toBe("1");
     } finally {
       await pool.end();
+    }
+  });
+
+  it("survives Postgres dropping an idle pooled connection, then reconnects", async () => {
+    const idleErrors: Error[] = [];
+    const { db, pool } = createDb(databaseUrl, { onIdleClientError: (e) => idleErrors.push(e) });
+    const admin = createDb(databaseUrl);
+    try {
+      await pingDatabase(db); // leaves one idle connection in the pool
+
+      // What a Postgres restart does: kill every other session. Without the pool's 'error'
+      // listener, this crashed the whole API process (found in Task 4's end-to-end check).
+      await admin.db.execute(
+        sql`select pg_terminate_backend(pid) from pg_stat_activity
+            where datname = current_database() and pid <> pg_backend_pid()`,
+      );
+
+      await vi.waitFor(() => {
+        expect(idleErrors).toHaveLength(1);
+      });
+      await expect(pingDatabase(db)).resolves.toBeUndefined(); // pool opened a new connection
+    } finally {
+      await pool.end();
+      await admin.pool.end();
     }
   });
 
