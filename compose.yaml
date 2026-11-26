@@ -6,9 +6,9 @@ services:
   postgres:
     image: pgvector/pgvector:pg18
     environment:
-      POSTGRES_USER: ${POSTGRES_USER:-skillforge}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-skillforge}
-      POSTGRES_DB: ${POSTGRES_DB:-skillforge}
+      POSTGRES_USER: ${POSTGRES_USER:?copy .env.example to .env}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?copy .env.example to .env}
+      POSTGRES_DB: ${POSTGRES_DB:?copy .env.example to .env}
     ports:
       - "127.0.0.1:${POSTGRES_PORT:-5433}:5432"
     volumes:

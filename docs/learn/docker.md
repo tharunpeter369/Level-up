@@ -59,7 +59,7 @@ services:
   postgres:
     image: pgvector/pgvector:pg18   # Postgres 18 with pgvector preinstalled
     environment:                     # settings passed into the container
-      POSTGRES_USER: ${POSTGRES_USER:-skillforge}   # read from .env, default "skillforge"
+      POSTGRES_USER: ${POSTGRES_USER:?copy .env.example to .env}   # must be set in .env
       ...
     ports:
       - "127.0.0.1:${POSTGRES_PORT:-5433}:5432"
@@ -78,7 +78,7 @@ Things worth noticing:
 - **5433, not 5432**, because your Homebrew Postgres already uses 5432. Inside the container it's still 5432; the mapping translates.
 - **No `restart:` policy**, so containers only start when you run `pnpm db:up`, never on their own.
 - **`healthcheck`** lets `docker compose up --wait` (our `pnpm db:up`) wait until Postgres actually accepts connections, not just until the process started.
-- **`${VAR:-default}`** reads from your `.env` file, falling back to the default.
+- **`${VAR:?message}`** reads from your `.env` file and **stops with that message if it's missing**. (`${VAR:-default}`, used for the ports, falls back to a default instead.) Credentials are required on purpose: Postgres only reads `POSTGRES_PASSWORD` when it first creates the database, so starting once without `.env` would create the database with the wrong password, and fixing `.env` afterwards wouldn't help without `pnpm db:reset`.
 
 ## Commands you'll use
 
