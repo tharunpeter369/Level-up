@@ -4,6 +4,7 @@
 
 - Strict TypeScript (`strict: true`, `noUncheckedIndexedAccess: true`). No `any`; use `unknown` and narrow.
 - ES modules everywhere. Named exports only (except where Next.js requires default exports).
+- Relative imports include the `.ts` extension (`./health.ts`) so Node 24 can run the source directly. No `enum`, `namespace` or constructor parameter properties (`erasableSyntaxOnly`); use `as const` objects and union types.
 - Prefer pure functions for business logic; pass time in (`now: Date`) instead of calling `new Date()` inside logic, so tests are deterministic.
 - No commented-out code. Comments explain _why_, not _what_.
 

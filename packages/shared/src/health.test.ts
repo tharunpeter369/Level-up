@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { HealthResponseSchema } from "./health.js";
+import { HealthResponseSchema } from "./health.ts";
 
 describe("HealthResponseSchema", () => {
   it("accepts a valid health response", () => {

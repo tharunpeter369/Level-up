@@ -48,7 +48,24 @@ first.toFixed(); // ❌ error: might be undefined
 first?.toFixed(); // ✅
 ```
 
-**Why imports say `./health.js` in a `.ts` file:** Node runs the compiled `.js` files, and TypeScript doesn't rewrite import paths, so you write the path that will exist at runtime.
+### Running TypeScript directly with Node 24 (why imports end in `.ts`)
+
+Node 24 can run `.ts` files itself: it **strips the types** and runs what's left. No `tsx`, `ts-node` or build step needed in development. Two rules make that work:
+
+1. **Imports use the real file name**: `import { x } from "./health.ts"`. Node doesn't guess extensions and doesn't rename `.js` → `.ts`. (We hit exactly this bug: `index.ts` imported `./health.js`, and plain `node` failed with `ERR_MODULE_NOT_FOUND`.)
+2. **Only "erasable" syntax**: types that can simply be deleted. `enum`, `namespace` and constructor parameter properties (`constructor(private x: number)`) generate real JavaScript, so Node can't strip them. Use a `const` object + union type instead of `enum`.
+
+The tsconfig settings that enforce this:
+
+| Setting                           | Job                                                                                                      |
+| --------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `allowImportingTsExtensions`      | Lets you write `./health.ts` in imports                                                                  |
+| `rewriteRelativeImportExtensions` | When `tsc` _does_ compile (e.g. for production), it rewrites `./health.ts` → `./health.js` in the output |
+| `erasableSyntaxOnly`              | Errors on `enum`/`namespace`/parameter properties, so the code always runs under Node's type stripping   |
+
+Try it: `node --input-type=module -e "import('./packages/shared/src/index.ts').then(m => console.log(Object.keys(m)))"`.
+
+**Remember:** type stripping doesn't **check** types. It deletes them. That's why `pnpm typecheck` still matters.
 
 **Version note:** we pinned TypeScript 6.0 because typescript-eslint doesn't support TypeScript 7 yet (see `journal.md`).
 
