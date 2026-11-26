@@ -62,9 +62,12 @@ src/modules/reviews/
 ## Tests
 
 - Test files sit next to the code: `foo.ts` → `foo.test.ts`. Integration tests: `*.int.test.ts`. E2E: `apps/web/e2e/`.
+- Route tests use Fastify's `app.inject()` (in memory, no port). Dependencies a route needs (DB checks, services) are passed into `buildApp()` so unit tests can swap in fakes.
+- `pnpm test` must never need Docker; anything touching a real database is an `*.int.test.ts` run by `pnpm test:int`.
 - Test names describe behavior: `it("caps the queue at 30 cards on weekdays")`.
 
 ## Git
 
 - Small commits, imperative mood: `Add review queue endpoint`.
-- One feature per branch once CI exists; PR description says what changed, why, and how it was tested.
+- One branch per task (`task-4-nextjs`), merged through a pull request once CI is green; `main` is protected. PR description says what changed, why, and how it was tested.
+- Git hooks (lefthook) format and lint staged files on commit, and typecheck + unit-test on push. `--no-verify` only for WIP commits on your own branch.

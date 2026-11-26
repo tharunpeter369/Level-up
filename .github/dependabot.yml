@@ -1,0 +1,32 @@
+# Weekly dependency update PRs. CI runs on each; merge when green.
+version: 2
+updates:
+  - package-ecosystem: npm # covers pnpm workspaces (reads pnpm-lock.yaml)
+    directory: /
+    schedule:
+      interval: weekly
+      day: saturday # weekend = project time
+    open-pull-requests-limit: 5
+    groups:
+      # One PR for all minor/patch updates instead of one per package.
+      minor-and-patch:
+        update-types: [minor, patch]
+    ignore:
+      # Pinned on purpose: typescript-eslint doesn't support TypeScript 7 yet (see docs/journal.md).
+      - dependency-name: typescript
+        update-types: [version-update:semver-major]
+      # Node 24 runtime: keep @types/node on 24.x.
+      - dependency-name: "@types/node"
+        update-types: [version-update:semver-major]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: saturday
+
+  - package-ecosystem: docker-compose
+    directory: /
+    schedule:
+      interval: weekly
+      day: saturday

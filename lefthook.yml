@@ -1,0 +1,24 @@
+# Git hooks, installed by `pnpm install` (root "prepare" script runs `lefthook install`).
+# Skip once with `git commit --no-verify` (CI still checks everything).
+
+# Load nvm and switch to Node 24 first (git hooks don't load your shell profile).
+rc: .lefthook-rc.sh
+
+pre-commit:
+  parallel: true
+  commands:
+    format:
+      run: pnpm exec prettier --write --ignore-unknown {staged_files}
+      stage_fixed: true
+    lint:
+      glob: "*.{ts,tsx,js,mjs,cjs}"
+      run: pnpm exec eslint --fix --max-warnings 0 {staged_files}
+      stage_fixed: true
+
+pre-push:
+  parallel: true
+  commands:
+    typecheck:
+      run: pnpm typecheck
+    unit-tests:
+      run: pnpm test
