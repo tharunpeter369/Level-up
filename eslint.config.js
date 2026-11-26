@@ -1,10 +1,12 @@
 import js from "@eslint/js";
+import nextPlugin from "@next/eslint-plugin-next";
+import reactHooks from "eslint-plugin-react-hooks";
 import prettier from "eslint-config-prettier";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 
 export default tseslint.config(
-  { ignores: ["**/node_modules/", "**/dist/", "**/coverage/", "**/.next/"] },
+  { ignores: ["**/node_modules/", "**/dist/", "**/coverage/", "**/.next/", "**/next-env.d.ts"] },
   js.configs.recommended,
   {
     files: ["**/*.ts", "**/*.tsx"],
@@ -22,6 +24,14 @@ export default tseslint.config(
       "@typescript-eslint/require-await": "off",
       "no-console": "warn",
     },
+  },
+  {
+    // Frontend: Next.js rules (e.g. <Link> for internal pages) and the rules of hooks.
+    files: ["apps/web/**/*.{ts,tsx}"],
+    extends: [reactHooks.configs.flat.recommended],
+    plugins: { "@next/next": nextPlugin },
+    rules: { ...nextPlugin.configs["core-web-vitals"].rules },
+    settings: { next: { rootDir: "apps/web/" } },
   },
   {
     files: ["**/*.js"],

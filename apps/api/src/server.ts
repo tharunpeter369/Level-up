@@ -11,7 +11,12 @@ const logger: FastifyServerOptions["logger"] =
     ? { level: config.LOG_LEVEL, transport: { target: "pino-pretty" } }
     : { level: config.LOG_LEVEL };
 
-const { db, pool } = createDb(config.DATABASE_URL);
+const { db, pool } = createDb(config.DATABASE_URL, {
+  // `app` is defined below; this only runs later, when a pooled connection dies.
+  onIdleClientError: (error) => {
+    app.log.warn({ err: error }, "Idle database connection error");
+  },
+});
 const app = await buildApp({ checkDatabase: () => pingDatabase(db), logger });
 
 // Runs during app.close(): release database connections before the process exits.

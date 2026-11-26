@@ -1,0 +1,90 @@
+/* Placeholder styles. The real design system (colors, type, spacing) comes before Phase 1 screens. */
+:root {
+  --bg: #fafafa;
+  --text: #18181b;
+  --muted: #52525b;
+  --surface: #ffffff;
+  --border: #e4e4e7;
+  --ok: #15803d;
+  --bad: #b91c1c;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #09090b;
+    --text: #f4f4f5;
+    --muted: #a1a1aa;
+    --surface: #18181b;
+    --border: #27272a;
+    --ok: #4ade80;
+    --bad: #f87171;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+  line-height: 1.5;
+}
+
+.home {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+}
+
+.tagline {
+  color: var(--muted);
+}
+
+.status {
+  margin-top: 2rem;
+  padding: 1rem 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+}
+
+.status h2 {
+  margin-top: 0;
+  font-size: 1rem;
+}
+
+.status-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.25rem 0;
+}
+
+.status-row dt {
+  font-weight: 600;
+}
+
+.status-row dd {
+  margin: 0;
+}
+
+/* Status is conveyed by text too, never by color alone. */
+[data-tone="ok"] {
+  color: var(--ok);
+}
+
+[data-tone="bad"] {
+  color: var(--bad);
+}
+
+[data-tone="unknown"] {
+  color: var(--muted);
+}
