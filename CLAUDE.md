@@ -11,14 +11,14 @@ Primary user: the author. Built on weekends; the project also exists to make the
 - **DB:** PostgreSQL + pgvector, accessed with Drizzle ORM; analytics queries in raw SQL
 - **Cache / queues:** Redis + BullMQ (worker added in Phase 5)
 - **Validation:** Zod schemas in `packages/shared`, used by both web and api
-- **Tests:** Vitest (unit), Supertest + Testcontainers (integration), Playwright (e2e)
+- **Tests:** Vitest (unit, routes via Fastify `app.inject()`), Testcontainers (integration, real Postgres), Playwright (e2e)
 
 ## Commands
 
 These are set up in Phase 0. Run from the repo root.
 
 - `pnpm dev` start web + api
-- `pnpm test` run all tests · `pnpm test --filter api` one package
+- `pnpm test` unit tests (no Docker) · `pnpm test:int` integration tests (needs Docker) · `pnpm --filter @skillforge/api test` one package
 - `pnpm lint` · `pnpm typecheck` · `pnpm format`
 - `pnpm db:generate` create a migration from schema changes · `pnpm db:migrate` apply migrations
 - `pnpm db:up` / `pnpm db:down` start / stop Postgres (host port 5433) and Redis (host port 6380) · `pnpm db:reset` wipes their data
@@ -26,16 +26,28 @@ These are set up in Phase 0. Run from the repo root.
 ## Layout
 
 ```
-apps/web        Next.js frontend (PWA)
-apps/api        Fastify API
-packages/shared Zod schemas, types, constants
-packages/syllabus  Markdown parser + seed data
-compose.yaml    local Postgres + Redis (Docker Compose)
-infra/          Postgres init script, (later) Dockerfiles
-docs/           plan, architecture, specs, ADRs, journal
+apps/web           Next.js frontend (PWA)                 (Task 4)
+apps/api           Fastify API                            → map: apps/api/CLAUDE.md
+packages/shared    Zod schemas + types for web and api    → map: packages/shared/CLAUDE.md
+packages/syllabus  Markdown parser + seed data            (Phase 1)
+compose.yaml       local Postgres + Redis (Docker Compose)
+infra/             Postgres init script, (later) Dockerfiles
+docs/              plan, architecture, specs, ADRs, journal, learn/
+.claude/skills/    /git-commit, /review-changes
+.github/           CI workflow (ci.yml), Dependabot
+lefthook.yml       git hooks: pre-commit format+lint staged files, pre-push typecheck+unit tests
 ```
 
 `apps/worker` and `packages/ai` are added when a phase needs them, not before.
+
+## Codebase maps
+
+Each app/package has its own `CLAUDE.md`: a file map (one line per key file), how to add things, and gotchas. Claude Code loads it automatically when working in that folder, so this root file stays short.
+
+- Use the map to go straight to the right file instead of searching the tree.
+- **Keep it current:** when a change adds, moves, renames or removes a key file, or changes how something works, update that package's map in the same change.
+- A new app/package gets its own `CLAUDE.md` and a `→ map:` entry above.
+- Maps describe structure and intent, not every file; never paste code or full file lists into them.
 
 ## Rules
 

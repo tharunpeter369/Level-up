@@ -45,7 +45,7 @@ Check, in this order:
 3. **Project rules (`CLAUDE.md`):** no `any`; no unapproved new dependencies (check `package.json` diffs); never edit an applied migration; `.env.example` updated for new env vars; learning-mode areas written by the author, not generated.
 4. **Conventions (`docs/conventions.md`):** layer boundaries (routes → controllers → services → repositories; services import no Fastify/Drizzle), error and response format, naming, file locations, `now` passed in rather than `new Date()` inside logic.
 5. **Tests:** behavior and spec edge cases covered, test names describe behavior, no `.only`/`.skip` left.
-6. **Docs:** `docs/data-model.md` matches schema changes; new technology has a `docs/learn/` guide; ADR for big decisions; journal entry.
+6. **Docs:** `docs/data-model.md` matches schema changes; new technology has a `docs/learn/` guide; ADR for big decisions; journal entry; the package's `CLAUDE.md` codebase map lists new/moved/removed key files and still matches the code (check its file map against `git ls-files <package>`).
 7. **Simplicity:** dead code, duplication, over-engineering, unclear names.
 
 Only report real issues you can point to. No vague "consider…" padding. If unsure, mark it as a question.

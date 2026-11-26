@@ -11,6 +11,7 @@ A task is done only when every applicable box is checked. Claude Code should run
 - [ ] No `any`, no `console.log`, no commented-out code, no TODOs without a linked note in the spec
 - [ ] New env vars are added to `.env.example` with placeholder values
 - [ ] No new dependencies unless approved
+- [ ] Codebase map (`<package>/CLAUDE.md`) updated if key files were added, moved or removed, or behavior changed
 
 ## When it applies
 
@@ -30,9 +31,9 @@ A task is done only when every applicable box is checked. Claude Code should run
 
 ## What to test where
 
-| Kind        | Tool                                                | Covers                                                            |
-| ----------- | --------------------------------------------------- | ----------------------------------------------------------------- |
-| Unit        | Vitest                                              | Pure logic: XP rules, mastery, FSRS wrapper, parser, rate limiter |
-| Integration | Vitest + Supertest + Testcontainers (real Postgres) | Endpoints, repositories, transactions                             |
-| End-to-end  | Playwright (from Phase 3)                           | Login, review, solve flows                                        |
-| AI evals    | Custom eval runner (from Phase 4)                   | Hint leaks, grading quality, retrieval recall                     |
+| Kind        | Tool                                    | Covers                                                            |
+| ----------- | --------------------------------------- | ----------------------------------------------------------------- |
+| Unit        | Vitest                                  | Pure logic: XP rules, mastery, FSRS wrapper, parser, rate limiter |
+| Integration | Vitest + Testcontainers (real Postgres) | Endpoints, repositories, transactions                             |
+| End-to-end  | Playwright (from Phase 3)               | Login, review, solve flows                                        |
+| AI evals    | Custom eval runner (from Phase 4)       | Hint leaks, grading quality, retrieval recall                     |
