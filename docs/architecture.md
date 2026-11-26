@@ -27,18 +27,18 @@ Moved from sections 5 and 2 of `skillforge-project-plan.md`. This file is now th
 
 ## Key decisions
 
-| Area | Decision | ADR |
-|---|---|---|
-| Database | PostgreSQL + pgvector (one DB for relational + vector) | 0001 |
-| DB access | Drizzle ORM for schema and migrations; raw SQL for analytics | to write |
-| API framework | Fastify (TypeScript-friendly, built-in schema validation, fast) | to write |
-| Frontend | Next.js App Router | — |
-| Cache / queues | Redis + BullMQ | — |
-| Spaced repetition | FSRS via `ts-fsrs` | — |
-| XP | Append-only event ledger | — |
-| Auth | GitHub OAuth + httpOnly cookie sessions stored in Postgres | to write |
-| AI | Provider adapter with fallback chain | — |
-| Code execution | Browser Web Worker for JS/TS; Judge0 later | — |
+| Area              | Decision                                                        | ADR      |
+| ----------------- | --------------------------------------------------------------- | -------- |
+| Database          | PostgreSQL + pgvector (one DB for relational + vector)          | 0001     |
+| DB access         | Drizzle ORM for schema and migrations; raw SQL for analytics    | to write |
+| API framework     | Fastify (TypeScript-friendly, built-in schema validation, fast) | to write |
+| Frontend          | Next.js App Router                                              | —        |
+| Cache / queues    | Redis + BullMQ                                                  | —        |
+| Spaced repetition | FSRS via `ts-fsrs`                                              | —        |
+| XP                | Append-only event ledger                                        | —        |
+| Auth              | GitHub OAuth + httpOnly cookie sessions stored in Postgres      | to write |
+| AI                | Provider adapter with fallback chain                            | —        |
+| Code execution    | Browser Web Worker for JS/TS; Judge0 later                      | —        |
 
 ## API design: layered and event-driven
 

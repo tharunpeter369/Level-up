@@ -11,15 +11,15 @@
 
 **What top companies actually evaluate:**
 
-| Signal | Where it's tested | Module |
-|---|---|---|
-| Problem solving | DSA coding rounds | 2 |
-| Designing at scale | System design round | 1, 3 |
-| Code quality and structure | LLD / machine coding | 4 |
-| Depth in your domain | Domain / tech deep-dive rounds | 5, 6 |
-| Modern relevance | AI-focused roles and projects | 7 |
-| Ownership and maturity | Behavioral round | 8 |
-| Communication | Every round | 8 |
+| Signal                     | Where it's tested              | Module |
+| -------------------------- | ------------------------------ | ------ |
+| Problem solving            | DSA coding rounds              | 2      |
+| Designing at scale         | System design round            | 1, 3   |
+| Code quality and structure | LLD / machine coding           | 4      |
+| Depth in your domain       | Domain / tech deep-dive rounds | 5, 6   |
+| Modern relevance           | AI-focused roles and projects  | 7      |
+| Ownership and maturity     | Behavioral round               | 8      |
+| Communication              | Every round                    | 8      |
 
 **How to work through it:**
 
@@ -34,6 +34,7 @@
 These are what separate engineers who understand systems from those who only know frameworks. They also power your system design answers.
 
 ### 1.1 Operating Systems
+
 - [Core] Processes vs threads, context switching, CPU scheduling basics
 - [Core] Concurrency: race conditions, mutexes, semaphores, deadlocks and how to prevent them
 - [Core] Memory: stack vs heap, virtual memory, paging, garbage collection basics
@@ -41,6 +42,7 @@ These are what separate engineers who understand systems from those who only kno
 - [Adv] File systems, page cache, system calls
 
 ### 1.2 Networking
+
 - [Core] TCP/IP model, TCP vs UDP, the TCP handshake
 - [Core] HTTP/1.1 vs HTTP/2 vs HTTP/3, status codes, headers, caching headers
 - [Core] HTTPS and the TLS handshake, certificates
@@ -51,6 +53,7 @@ These are what separate engineers who understand systems from those who only kno
 - [Adv] Proxies, reverse proxies, CDNs at the network level, TCP congestion control basics
 
 ### 1.3 Database Internals
+
 - [Core] SQL fluency: joins, GROUP BY, subqueries, window functions, CTEs (learn PostgreSQL properly, not just MongoDB)
 - [Core] Indexes: B-trees, composite and covering indexes, when an index doesn't help
 - [Core] Transactions and ACID, isolation levels and their anomalies (dirty reads, phantom reads, etc.)
@@ -59,12 +62,14 @@ These are what separate engineers who understand systems from those who only kno
 - [Adv] Query planners and reading EXPLAIN output
 
 ### 1.4 Distributed Systems Basics
+
 - [Core] CAP theorem and PACELC, consistency models (strong, eventual, read-your-writes)
 - [Core] Replication and partitioning concepts
 - [Core] Idempotency, retries, and why "exactly-once" delivery is hard
 - [Adv] Consensus (Raft at a conceptual level), clocks and ordering, leader election
 
 ### 1.5 Computer Architecture (light)
+
 - [Core] "Latency numbers every programmer should know"
 - [Adv] CPU caches and memory locality and why they affect performance
 
@@ -79,10 +84,12 @@ This is the main filter at top companies. Run it continuously, 1 to 2 problems a
 **Language:** Python, Java, or C++ is easiest in interviews. JavaScript or TypeScript is acceptable, but you must be able to write your own min-heap quickly.
 
 ### 2.1 Foundations
+
 - [Core] Big-O time and space complexity, amortized analysis
 - [Core] Reading constraints to infer the target complexity (for example, n ≤ 10^5 usually means O(n log n) or better)
 
 ### 2.2 Topics in Learning Order
+
 1. [Core] Arrays and hashing
 2. [Core] Two pointers
 3. [Core] Sliding window (fixed and variable)
@@ -105,6 +112,7 @@ This is the main filter at top companies. Run it continuously, 1 to 2 problems a
 20. [Adv] Segment trees and Fenwick trees, string algorithms (KMP, rolling hash)
 
 ### 2.3 Practice Method
+
 - Learn each topic by pattern, then solve problems in that pattern. Don't solve randomly.
 - Use a 20 to 30 minute "stuck rule": if you're stuck, study the solution, then re-solve it yourself 2 to 3 days later.
 - Track every problem in a spreadsheet: pattern, date, solved alone or not, re-solve date.
@@ -112,6 +120,7 @@ This is the main filter at top companies. Run it continuously, 1 to 2 problems a
 - From the midpoint onward, do LeetCode weekly contests for timed pressure.
 
 ### 2.4 Milestones
+
 - NeetCode 150 completed
 - 250 to 350 total problems, including about 50 hards
 - Weak patterns re-solved until they feel easy
@@ -125,6 +134,7 @@ This is the main filter at top companies. Run it continuously, 1 to 2 problems a
 This round usually decides your level (mid vs senior), which strongly affects your pay.
 
 ### 3.1 Building Blocks
+
 - [Core] Load balancers (L4 vs L7, balancing algorithms), reverse proxies, API gateways
 - [Core] Caching: cache-aside, write-through, write-back, eviction policies, invalidation, Redis
 - [Core] CDNs
@@ -138,6 +148,7 @@ This round usually decides your level (mid vs senior), which strongly affects yo
 - [Adv] Unique ID generation (Snowflake), Bloom filters, geohashing and quadtrees
 
 ### 3.2 Concepts and Trade-offs
+
 - [Core] Vertical vs horizontal scaling, stateless services
 - [Core] Availability, SLAs, SLOs, "nines"
 - [Core] Latency vs throughput
@@ -150,6 +161,7 @@ This round usually decides your level (mid vs senior), which strongly affects yo
 - [Adv] Event-driven architecture, CQRS, event sourcing
 
 ### 3.3 Interview Framework (use it every time)
+
 1. Clarify functional and non-functional requirements
 2. Estimate scale
 3. Define the API
@@ -159,6 +171,7 @@ This round usually decides your level (mid vs senior), which strongly affects yo
 7. Discuss bottlenecks, failure modes, and trade-offs
 
 ### 3.4 Practice Problems
+
 1. URL shortener
 2. Rate limiter
 3. Distributed key-value store
@@ -181,6 +194,7 @@ This round usually decides your level (mid vs senior), which strongly affects yo
 20. Ad click aggregation
 
 ### 3.5 Frontend System Design (your full-stack edge)
+
 - [Core] Rendering strategies: CSR, SSR, SSG, ISR, streaming
 - [Core] State management architecture, client-side caching, data fetching
 - [Core] Performance budgets and Core Web Vitals
@@ -196,16 +210,19 @@ This round usually decides your level (mid vs senior), which strongly affects yo
 Common at Amazon, Microsoft, Uber, and many Indian product companies, often as a "machine coding" round.
 
 ### 4.1 Principles
+
 - [Core] The four OOP pillars, composition over inheritance
 - [Core] SOLID, DRY, KISS, YAGNI
 - [Core] Basic UML class diagrams
 
 ### 4.2 Design Patterns
+
 - [Core] Creational: Factory, Builder, Singleton
 - [Core] Structural: Adapter, Decorator, Facade, Proxy
 - [Core] Behavioral: Strategy, Observer, Command, State, Chain of Responsibility
 
 ### 4.3 Practice Problems
+
 1. Parking lot
 2. Elevator system
 3. Movie ticket booking (BookMyShow)
@@ -220,6 +237,7 @@ Common at Amazon, Microsoft, Uber, and many Indian product companies, often as a
 12. Rate limiter (LLD version)
 
 ### 4.4 Clean Code
+
 - [Core] Naming, small functions, error handling, writing testable code
 - [Core] Refactoring techniques and code smells
 - [Adv] Thread-safe designs and concurrency in LLD
@@ -233,6 +251,7 @@ Common at Amazon, Microsoft, Uber, and many Indian product companies, often as a
 Your 4 years of MERN experience is an asset. Turn it from "can build with it" into "understands it under the hood".
 
 ### 5.1 JavaScript
+
 - [Core] Execution context, hoisting, scope chain, closures
 - [Core] `this` binding rules, prototypes and prototypal inheritance
 - [Core] The event loop: call stack, microtasks vs macrotasks
@@ -243,10 +262,12 @@ Your 4 years of MERN experience is an asset. Turn it from "can build with it" in
 **Write these from scratch:** debounce, throttle, `Promise.all` / `allSettled` / `race` / `any`, `bind` / `call` / `apply`, deep clone, array flatten, curry, memoize, an EventEmitter, and `map` / `filter` / `reduce` polyfills.
 
 ### 5.2 TypeScript
+
 - [Core] Generics, utility types, type narrowing, discriminated unions
 - [Adv] Conditional types, mapped types, `infer`
 
 ### 5.3 Node.js
+
 - [Core] Event loop phases, libuv and the thread pool
 - [Core] Streams and backpressure, buffers
 - [Core] Error handling patterns, graceful shutdown
@@ -254,6 +275,7 @@ Your 4 years of MERN experience is an asset. Turn it from "can build with it" in
 - [Adv] Cluster mode and worker threads, profiling CPU and memory, finding memory leaks
 
 ### 5.4 React
+
 - [Core] Reconciliation and how rendering actually works (when and why components re-render)
 - [Core] Hooks in depth: stale closures, `useEffect` pitfalls, custom hooks
 - [Core] Memoization (`memo`, `useMemo`, `useCallback`) and when it's worth it
@@ -263,12 +285,14 @@ Your 4 years of MERN experience is an asset. Turn it from "can build with it" in
 - [Adv] Server Components and the Next.js App Router
 
 ### 5.5 Browser and Web Performance
+
 - [Core] Critical rendering path, reflow and repaint
 - [Core] Core Web Vitals (LCP, INP, CLS) and how to improve them
 - [Core] Code splitting, lazy loading, bundle analysis, caching strategies
 - [Adv] Service workers, web workers
 
 ### 5.6 MongoDB
+
 - [Core] Schema design: embedding vs referencing, common schema patterns
 - [Core] Indexing strategies and reading `explain()` output
 - [Core] Aggregation pipeline
@@ -303,10 +327,12 @@ These are the skills that make you trusted with production systems, and they com
 This is your biggest opportunity right now. Full-stack developers who can ship real AI products are in high demand.
 
 ### 7.1 Foundations
+
 - [Core] How LLMs work at a high level: tokens, context windows, temperature, transformers, embeddings
 - [Adv] ML fundamentals (supervised learning, loss, training vs inference)
 
 ### 7.2 Building With LLMs
+
 - [Core] Calling model APIs (Claude, OpenAI, Gemini) from Node: streaming, tool/function calling, structured outputs, vision inputs
 - [Core] Prompt engineering and context engineering
 - [Core] Retrieval-Augmented Generation (RAG): chunking, embeddings, vector databases (MongoDB Atlas Vector Search, pgvector), hybrid search, reranking
@@ -314,6 +340,7 @@ This is your biggest opportunity right now. Full-stack developers who can ship r
 - [Adv] Fine-tuning basics and when it's worth it vs RAG
 
 ### 7.3 Production AI
+
 - [Core] Evaluation: building eval datasets, LLM-as-judge, regression testing for prompts
 - [Core] Cost and latency optimization, caching, rate limits
 - [Core] Hallucination mitigation, prompt injection and AI security
@@ -321,11 +348,13 @@ This is your biggest opportunity right now. Full-stack developers who can ship r
 - [Adv] AI system design ("design ChatGPT", "design a RAG system for 10M documents")
 
 ### 7.4 Working With AI Coding Tools
+
 - [Core] Use tools like Claude Code and Cursor daily to move faster
 - [Core] Review AI-generated code critically: correctness, security, performance
 - [Core] **Rule:** while learning (especially DSA), solve problems yourself first and use AI only to review afterward
 
 ### 7.5 Projects (build 2 to 3, production-grade)
+
 1. **RAG assistant:** chat over a large document set, with citations, auth, evals, and cost tracking
 2. **AI agent:** automates a real multi-step workflow using tools/MCP, with guardrails and logging
 3. **AI feature in a full product:** a complete MERN/Next.js app where AI is one well-integrated part
@@ -339,7 +368,9 @@ This is your biggest opportunity right now. Full-stack developers who can ship r
 Strong candidates fail here more often than you'd expect.
 
 ### 8.1 Story Bank
+
 Prepare 10 to 12 stories in **STAR format** (Situation, Task, Action, Result), each with numbers where possible:
+
 1. Your highest-impact project
 2. A conflict with a teammate
 3. A disagreement with your manager or a senior engineer
@@ -354,16 +385,19 @@ Prepare 10 to 12 stories in **STAR format** (Situation, Task, Action, Result), e
 12. Going above and beyond for a user or customer
 
 ### 8.2 Company Frameworks
+
 - Amazon: the 16 Leadership Principles (map each story to 2 or 3 principles)
 - Google: "Googleyness", collaboration, and handling ambiguity
 - Meta: impact, moving fast, and direct communication
 
 ### 8.3 Communication in Technical Rounds
+
 - Always clarify the problem before coding
 - Think out loud, state trade-offs, and say when you're making an assumption
 - Test your own code before the interviewer asks
 
 ### 8.4 Interview Execution
+
 - **Resume:** one page, impact-focused bullets ("Did X, which improved Y by Z%"), with metrics
 - **Mock interviews:** at least 10 to 15 across DSA, system design, and behavioral (Pramp, interviewing.io, or peers)
 - **Referrals:** reach out on LinkedIn; referrals greatly improve shortlisting
@@ -378,12 +412,14 @@ Prepare 10 to 12 stories in **STAR format** (Situation, Task, Action, Result), e
 Assumes you're working full-time and can give about **12 to 15 hours a week**. With more time, you can compress this to 6 to 8 months.
 
 ### Phase 1: Foundations (Months 1 to 3)
+
 - DSA topics 1 to 9
 - JavaScript and Node.js deep dive (Module 5.1 to 5.3)
 - OS and networking (Module 1.1, 1.2)
 - Start AI fundamentals and the first AI project
 
 ### Phase 2: Building Depth (Months 4 to 6)
+
 - DSA topics 10 to 17
 - System design building blocks and the first 8 practice problems
 - Database internals (Module 1.3) and MongoDB/Postgres depth
@@ -391,6 +427,7 @@ Assumes you're working full-time and can give about **12 to 15 hours a week**. W
 - Ship AI project 1
 
 ### Phase 3: Advanced and Breadth (Months 7 to 9)
+
 - DSA advanced topics, hards, and weekly contests
 - Remaining system design problems, plus frontend system design
 - LLD practice problems
@@ -398,6 +435,7 @@ Assumes you're working full-time and can give about **12 to 15 hours a week**. W
 - AI project 2 with RAG or agents, plus evals
 
 ### Phase 4: Interview Mode (Months 10 to 12)
+
 - Mock interviews every week
 - Behavioral story bank finalized
 - Company-tagged LeetCode questions for your targets
@@ -405,55 +443,63 @@ Assumes you're working full-time and can give about **12 to 15 hours a week**. W
 - Everything else in maintenance mode (light daily revision)
 
 ### Weekly Rhythm
-| Day | Focus |
-|---|---|
+
+| Day        | Focus                                                                                       |
+| ---------- | ------------------------------------------------------------------------------------------- |
 | Mon to Fri | 1 hour DSA + 45 to 60 minutes rotating between fundamentals, system design, and stack depth |
-| Saturday | 3 to 4 hours of project building |
-| Sunday | 2 hours of system design or LLD practice + revision of the week's DSA |
+| Saturday   | 3 to 4 hours of project building                                                            |
+| Sunday     | 2 hours of system design or LLD practice + revision of the week's DSA                       |
 
 ---
 
 ## Resources
 
 ### DSA
+
 - NeetCode 150 and roadmap (neetcode.io)
 - Striver's A2Z DSA Sheet (takeuforward.org)
 - LeetCode (practice, contests, and company-tagged lists)
 - Abdul Bari's algorithm videos (YouTube) for theory
 
 ### CS Fundamentals
-- *Operating Systems: Three Easy Pieces* (free online)
-- *Computer Networking: A Top-Down Approach* by Kurose and Ross
-- *High Performance Browser Networking* by Ilya Grigorik (free online)
+
+- _Operating Systems: Three Easy Pieces_ (free online)
+- _Computer Networking: A Top-Down Approach_ by Kurose and Ross
+- _High Performance Browser Networking_ by Ilya Grigorik (free online)
 - CMU Database Systems course by Andy Pavlo (YouTube)
 
 ### System Design
-- *Designing Data-Intensive Applications* by Martin Kleppmann (the most important book on this list)
-- *System Design Interview*, Vol 1 and 2, by Alex Xu
+
+- _Designing Data-Intensive Applications_ by Martin Kleppmann (the most important book on this list)
+- _System Design Interview_, Vol 1 and 2, by Alex Xu
 - System Design Primer (GitHub)
 - ByteByteGo and Hello Interview
 - Engineering blogs: Netflix, Uber, Discord, Stripe, Cloudflare
 
 ### LLD and Clean Code
-- *Head First Design Patterns*
+
+- _Head First Design Patterns_
 - refactoring.guru
-- *Refactoring* by Martin Fowler
+- _Refactoring_ by Martin Fowler
 
 ### JavaScript, React, Node
-- *You Don't Know JS Yet* by Kyle Simpson
+
+- _You Don't Know JS Yet_ by Kyle Simpson
 - javascript.info
 - react.dev (official docs)
-- *Node.js Design Patterns* by Mario Casciaro and Luciano Mammino
+- _Node.js Design Patterns_ by Mario Casciaro and Luciano Mammino
 - GreatFrontEnd and BFE.dev for frontend interview practice
 
 ### AI Engineering
+
 - Official developer docs and courses from Anthropic and OpenAI
 - DeepLearning.AI short courses
 - Andrej Karpathy's "Neural Networks: Zero to Hero" (YouTube)
-- *AI Engineering* by Chip Huyen
+- _AI Engineering_ by Chip Huyen
 
 ### Interviews and Career
-- *Cracking the Coding Interview* by Gayle Laakmann McDowell
+
+- _Cracking the Coding Interview_ by Gayle Laakmann McDowell
 - Pramp and interviewing.io for mock interviews
 - levels.fyi for leveling and compensation data
 
