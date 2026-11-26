@@ -36,21 +36,21 @@
 
 These are the decisions I'd make after reviewing the plan, and why. Each one is also an interview talking point.
 
-| Area                       | Decision                                                                          | Why                                                                                                                                                                                           |
-| -------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Main database              | **PostgreSQL + pgvector**                                                         | Forces you to practice SQL (Module 1.3). One database handles both relational data and vector search, so no separate vector DB to manage. You already know MongoDB, so this adds a new skill. |
-| Frontend                   | **Next.js (App Router) + TypeScript**                                             | Practice Server Components and modern React (Module 5.4).                                                                                                                                     |
-| Backend                    | **Separate Node.js API (Express or Fastify) in TypeScript, layered architecture** | Node depth (Module 5.3), clean LLD (Module 4), and a clear "independent scaling" story.                                                                                                       |
-| Cache, queues, rate limits | **Redis + BullMQ**                                                                | Core system design building blocks (Module 3.1).                                                                                                                                              |
-| Spaced repetition          | **FSRS algorithm via the `ts-fsrs` library**                                      | Modern, proven scheduler (the one Anki uses). Better than older SM-2.                                                                                                                         |
-| XP system                  | **Append-only event ledger**                                                      | Auditable, easy to recompute, and a real example of event sourcing (Module 3.2).                                                                                                              |
-| AI                         | **Provider adapter with fallback chain**                                          | Free tiers change often. Practices the Strategy and Adapter patterns (Module 4) and retries/circuit breakers (Module 3.2).                                                                    |
-| Code execution             | **Sandboxed browser Web Worker for JS/TS first; self-hosted Judge0 later**        | Safe and free. Teaches workers and sandboxing.                                                                                                                                                |
-| Problem content            | **Links plus your own summaries only**                                            | Avoids copying copyrighted problem statements.                                                                                                                                                |
-| Skill tree                 | **Soft locks** (locked topics can still be opened)                                | Keeps structure without blocking you when you need flexibility.                                                                                                                               |
-| Leaderboards               | **Later, friend groups only**                                                     | Public leaderboards often hurt motivation.                                                                                                                                                    |
-| Mobile                     | **PWA**                                                                           | Review cards on your commute without building a second app.                                                                                                                                   |
-| Weekday load               | **"Workday mode" for daily quests**                                               | Lighter quests Monday to Friday so the app fits around a full-time job.                                                                                                                       |
+| Area                       | Decision                                                                   | Why                                                                                                                                                                                           |
+| -------------------------- | -------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Main database              | **PostgreSQL + pgvector**                                                  | Forces you to practice SQL (Module 1.3). One database handles both relational data and vector search, so no separate vector DB to manage. You already know MongoDB, so this adds a new skill. |
+| Frontend                   | **Next.js (App Router) + TypeScript**                                      | Practice Server Components and modern React (Module 5.4).                                                                                                                                     |
+| Backend                    | **Separate Node.js API (Fastify) in TypeScript, layered architecture**     | Node depth (Module 5.3), clean LLD (Module 4), and a clear "independent scaling" story.                                                                                                       |
+| Cache, queues, rate limits | **Redis + BullMQ**                                                         | Core system design building blocks (Module 3.1).                                                                                                                                              |
+| Spaced repetition          | **FSRS algorithm via the `ts-fsrs` library**                               | Modern, proven scheduler (the one Anki uses). Better than older SM-2.                                                                                                                         |
+| XP system                  | **Append-only event ledger**                                               | Auditable, easy to recompute, and a real example of event sourcing (Module 3.2).                                                                                                              |
+| AI                         | **Provider adapter with fallback chain**                                   | Free tiers change often. Practices the Strategy and Adapter patterns (Module 4) and retries/circuit breakers (Module 3.2).                                                                    |
+| Code execution             | **Sandboxed browser Web Worker for JS/TS first; self-hosted Judge0 later** | Safe and free. Teaches workers and sandboxing.                                                                                                                                                |
+| Problem content            | **Links plus your own summaries only**                                     | Avoids copying copyrighted problem statements.                                                                                                                                                |
+| Skill tree                 | **Soft locks** (locked topics can still be opened)                         | Keeps structure without blocking you when you need flexibility.                                                                                                                               |
+| Leaderboards               | **Later, friend groups only**                                              | Public leaderboards often hurt motivation.                                                                                                                                                    |
+| Mobile                     | **PWA**                                                                    | Review cards on your commute without building a second app.                                                                                                                                   |
+| Weekday load               | **"Workday mode" for daily quests**                                        | Lighter quests Monday to Friday so the app fits around a full-time job.                                                                                                                       |
 
 ---
 
@@ -226,7 +226,7 @@ The project phases are timed so you build each feature right when you're studyin
 - GitHub Actions CI: lint, typecheck, test.
 - Write your first ADR: "PostgreSQL + pgvector over MongoDB."
 
-**Done when:** `docker compose up` runs web, API, and database locally, and CI is green.
+**Done when:** `pnpm db:up` starts Postgres and Redis in Docker, `pnpm dev` runs web and API against them, and CI is green.
 
 #### Phase 1: MVP Tracker (Weeks 2 to 4, about 15 hours)
 
@@ -234,6 +234,7 @@ The project phases are timed so you build each feature right when you're studyin
 - Syllabus parser (Markdown → JSON) with unit tests, plus seed script.
 - Topic pages with status, Markdown notes, and "Done when" checklists.
 - Problem log.
+- Simple study session timer (start/stop against a topic), so the Phase 1 goal of logging every session is possible.
 - Basic dashboard: progress per module and problems by pattern.
 
 **Done when:** You log every study session and problem in the app daily.
@@ -252,7 +253,7 @@ The project phases are timed so you build each feature right when you're studyin
 
 - Code panel: Monaco editor, test cases, timer, sandboxed Web Worker runner with time limits.
 - Pattern recognition drill with your own summaries for about 100 problems.
-- Study session timer linked to topics.
+- Study session timer: upgrade the simple Phase 1 timer (pause/resume, auto-link to the open topic or problem).
 - Playwright end-to-end tests for the review and solve flows.
 
 **Done when:** You solve your daily DSA problems inside the app.
