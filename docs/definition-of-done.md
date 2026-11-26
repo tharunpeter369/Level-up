@@ -19,6 +19,8 @@ A task is done only when every applicable box is checked. Claude Code should run
 - [ ] **Schema change:** new migration generated and applied; `docs/data-model.md` updated
 - [ ] **UI change:** checked manually in the browser, works with keyboard, works at phone width, works in dark mode
 - [ ] **Architecture decision:** ADR written in `docs/adr/`
+- [ ] **New technology:** guide written in `docs/learn/` and listed in `docs/learn/README.md`
+- [ ] **Teaching:** "What you learned" recap and check-yourself questions given to the author
 - [ ] **AI feature (Phase 4+):** output validated with Zod, prompt versioned, eval cases added and passing
 
 ## Before closing the session

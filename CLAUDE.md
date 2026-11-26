@@ -21,7 +21,7 @@ These are set up in Phase 0. Run from the repo root.
 - `pnpm test` run all tests · `pnpm test --filter api` one package
 - `pnpm lint` · `pnpm typecheck` · `pnpm format`
 - `pnpm db:generate` create a migration from schema changes · `pnpm db:migrate` apply migrations
-- `docker compose up -d` start Postgres and Redis
+- `pnpm db:up` / `pnpm db:down` start / stop Postgres (host port 5433) and Redis (host port 6380) · `pnpm db:reset` wipes their data
 
 ## Layout
 
@@ -30,7 +30,8 @@ apps/web        Next.js frontend (PWA)
 apps/api        Fastify API
 packages/shared Zod schemas, types, constants
 packages/syllabus  Markdown parser + seed data
-infra/          docker-compose, Dockerfiles
+compose.yaml    local Postgres + Redis (Docker Compose)
+infra/          Postgres init script, (later) Dockerfiles
 docs/           plan, architecture, specs, ADRs, journal
 ```
 
@@ -62,9 +63,20 @@ In these areas the author writes the code. **Do not write the implementation.** 
 
 If unsure whether something falls in these areas, ask.
 
+## Teaching (every task)
+
+The author is a full-stack developer (knows React, Node, MongoDB) but is new to much of this stack (Docker, Redis, Postgres, Next.js, Fastify, Drizzle…). The goal is understanding, not just a working app. In every task:
+
+1. **Before coding:** explain the concepts the task needs, why we're doing it this way, and the alternatives we're not using. Keep it short and concrete.
+2. **New technology:** before first use, write `docs/learn/<tech>.md` (what it is, how it works, how SkillForge uses it, try-it exercises, common mistakes, check-yourself questions) and add it to the table in `docs/learn/README.md`.
+3. **While coding:** explain non-obvious lines; connect them to the docs/learn guides.
+4. **After the task:** give a short "What you learned" recap, 3–5 check-yourself questions, and one hands-on thing to try.
+5. Assume no prior knowledge of the new tech; relate it to what the author knows (React, Node, MongoDB).
+
 ## Docs
 
 - Plan and roadmap: `docs/skillforge-project-plan.md`
 - Architecture: `docs/architecture.md` · Data model and API: `docs/data-model.md`
 - Conventions: `docs/conventions.md` · Definition of Done: `docs/definition-of-done.md`
 - Feature specs: `docs/specs/` · Decisions: `docs/adr/` · Build journal: `docs/journal.md`
+- Learning guides (project overview + one per technology): `docs/learn/`
