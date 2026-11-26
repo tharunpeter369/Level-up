@@ -59,7 +59,8 @@ packages/
   shared/     Zod schemas, types, constants      Phase 0
   syllabus/   Markdown parser and seed data      Phase 1
   ai/         Provider adapter, prompts, evals   Phase 4
-infra/        docker-compose, Dockerfiles
+compose.yaml  Local Postgres + Redis (Docker Compose)
+infra/        Postgres init script, (later) Dockerfiles
 docs/
   adr/        Architecture Decision Records
   specs/      Feature specs with acceptance criteria

@@ -1,0 +1,39 @@
+# Local development services. Start with `pnpm db:up` (or `docker compose up -d`).
+# Host ports default to 5433/6380 to avoid clashing with a locally installed Postgres/Redis.
+name: skillforge
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg18
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-skillforge}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-skillforge}
+      POSTGRES_DB: ${POSTGRES_DB:-skillforge}
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-5433}:5432"
+    volumes:
+      # Postgres 18+ images keep data in a versioned subfolder, so mount the parent directory.
+      - postgres-data:/var/lib/postgresql
+      - ./infra/postgres/init.sql:/docker-entrypoint-initdb.d/001-init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  redis:
+    image: redis:8-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "127.0.0.1:${REDIS_PORT:-6380}:6379"
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  postgres-data:
+  redis-data:

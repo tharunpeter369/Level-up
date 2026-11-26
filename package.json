@@ -11,7 +11,10 @@
     "lint": "eslint .",
     "test": "pnpm -r --if-present test",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "db:up": "docker compose up -d --wait",
+    "db:down": "docker compose down",
+    "db:reset": "docker compose down --volumes && docker compose up -d --wait"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
