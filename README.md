@@ -45,7 +45,7 @@ Check everything works:
 ```bash
 pnpm typecheck && pnpm lint && pnpm test && pnpm test:int
 pnpm db:migrate                 # apply database migrations
-pnpm dev                        # API on http://localhost:3001/health
+pnpm dev                        # web on http://127.0.0.1:3000, API on http://127.0.0.1:3001
 ```
 
 ## Scripts
@@ -56,7 +56,8 @@ pnpm dev                        # API on http://localhost:3001/health
 | `pnpm db:reset`          | Wipe local database data and start fresh       |
 | `pnpm typecheck`         | TypeScript checks across all packages          |
 | `pnpm lint`              | ESLint (warnings fail too)                     |
-| `pnpm dev`               | Run the API with auto-restart on file changes  |
+| `pnpm dev`               | Run web + API with hot reload                  |
+| `pnpm build`             | Production build of the web app                |
 | `pnpm test`              | Unit tests (Vitest, no Docker needed)          |
 | `pnpm test:int`          | Integration tests (real Postgres via Docker)   |
 | `pnpm db:generate`       | Create a migration from schema changes         |
@@ -67,7 +68,7 @@ pnpm dev                        # API on http://localhost:3001/health
 
 ```
 apps/api         Fastify API (health checks, Drizzle, migrations)
-apps/web         Next.js frontend, coming next
+apps/web         Next.js frontend (Server Components, live system status)
 packages/shared  Zod schemas and types shared by web and API
 compose.yaml     local Postgres + Redis
 infra/           Postgres init script, later Dockerfiles

@@ -44,3 +44,11 @@ A few lines every weekend: what you built, what broke, how you fixed it, and any
 - lefthook: pre-commit = Prettier + ESLint on staged files (fixes re-staged); pre-push = typecheck + unit tests. Hook install via root `prepare` script; lefthook's own postinstall denied in `allowBuilds`.
 - Hit: git hooks run in a bare shell (default Node 20/18, no pnpm) → `pnpm: command not found`. Fixed with `.lefthook-rc.sh` (lefthook `rc:`) that loads nvm and uses `.nvmrc`. Verified in a throwaway repo copy from a minimal env: `any` blocked, bad formatting auto-fixed in the commit, push ran checks in ~3 s.
 - Dependabot weekly (Saturday): npm (grouped minor/patch; TS and @types/node majors ignored on purpose), GitHub Actions, docker-compose images. `.vscode/` settings + recommended extensions. MIT license.
+
+## 2026-11-26 — Phase 0, Task 4: Next.js frontend
+
+- `apps/web`: Next.js 16.4 (App Router, Turbopack) + React 19.3. Home page is a Server Component that fetches `/health/ready` server-to-server and validates it with the shared `ReadinessResponseSchema` (no CORS needed, API URL never reaches the browser). `pnpm dev` runs web (:3000) + API (:3001); both bind to 127.0.0.1.
+- Lint: `@next/eslint-plugin-next` (core-web-vitals) + `eslint-plugin-react-hooks` instead of `eslint-config-next` (avoids a second TS/import setup). CI now also runs `pnpm build`.
+- Hit 1: `node --env-file` breaks `next dev` ("not allowed in NODE_OPTIONS": Next forwards Node flags to workers). Loaded the root `.env` in `next.config.ts` with Node's `process.loadEnvFile()` instead.
+- **Hit 2 (real bug from Task 3):** stopping Postgres after a query **crashed the API**: the pg pool emits `'error'` when an idle connection dies, and an unhandled `'error'` event kills Node. Task 3's outage test missed it (no idle connections yet). Fixed with a pool error listener in `createDb()`; new integration test terminates the backend on purpose, and fails without the fix.
+- End-to-end, four states verified on the page: all up / DB down / DB back / API down. Tests: web 6 unit, API 8 unit + 4 integration.

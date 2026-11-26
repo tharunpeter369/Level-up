@@ -58,7 +58,7 @@ SkillForge is a web app that helps you study the Top 1% SWE syllabus every day. 
 | API             | Fastify                                               | The Node.js web server                                               | [fastify.md](fastify.md)                           | Phase 0 ✅ |
 | DB access       | Drizzle ORM + `pg`                                    | Type-safe SQL and migrations from TypeScript                         | [drizzle.md](drizzle.md)                           | Phase 0 ✅ |
 | Testing         | Vitest, `app.inject()`, Testcontainers                | Unit tests in memory, integration tests on a real throwaway Postgres | [testing.md](testing.md)                           | Phase 0 ✅ |
-| Frontend        | Next.js (App Router)                                  | React framework with server rendering and routing                    | _coming in Task 4_                                 | Phase 0    |
+| Frontend        | Next.js (App Router)                                  | React framework with server rendering and routing                    | [nextjs.md](nextjs.md)                             | Phase 0 ✅ |
 | CI              | GitHub Actions                                        | Runs lint, typecheck and tests on every push                         | [ci-and-git-workflow.md](ci-and-git-workflow.md)   | Phase 0 ✅ |
 | Auth            | GitHub OAuth + cookie sessions                        | Log in with GitHub                                                   | _Phase 1_                                          | Phase 1    |
 | Memory          | FSRS (`ts-fsrs`)                                      | Decides when you should review each card                             | _Phase 2_                                          | Phase 2    |
@@ -110,7 +110,7 @@ Each AI session starts with no memory of the code. Instead of searching the whol
 | --------------------------- | -------------------------------------- | ----------------------------------------------------- |
 | `CLAUDE.md` (root)          | Every session                          | Rules, stack, top-level layout with links to the maps |
 | `apps/api/CLAUDE.md`        | Only when working in `apps/api`        | API file map, how to add a feature module, gotchas    |
-| `apps/web/CLAUDE.md`        | Only when working in `apps/web`        | Frontend map (from Task 4)                            |
+| `apps/web/CLAUDE.md`        | Only when working in `apps/web`        | Frontend file map, patterns, gotchas                  |
 | `packages/shared/CLAUDE.md` | Only when working in `packages/shared` | Schema map and rules                                  |
 
 Splitting per package means backend work never pays for frontend context and vice versa. The maps hold **structure and intent** (where things are, why, how to add more), not every file, so they stay short and don't go stale. Keeping them current is part of the Definition of Done. They're useful for humans too: read `apps/api/CLAUDE.md` for a one-page tour of the API.

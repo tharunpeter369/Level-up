@@ -26,7 +26,7 @@ These are set up in Phase 0. Run from the repo root.
 ## Layout
 
 ```
-apps/web           Next.js frontend (PWA)                 (Task 4)
+apps/web           Next.js frontend (PWA)                 → map: apps/web/CLAUDE.md
 apps/api           Fastify API                            → map: apps/api/CLAUDE.md
 packages/shared    Zod schemas + types for web and api    → map: packages/shared/CLAUDE.md
 packages/syllabus  Markdown parser + seed data            (Phase 1)
