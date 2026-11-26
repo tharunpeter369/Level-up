@@ -331,7 +331,7 @@ The project phases are timed so you build each feature right when you're studyin
 - **Code quality:** Strict TypeScript, ESLint, Prettier, and small pull requests even when working alone (practice writing clear PR descriptions).
 - **Testing:**
   - Unit tests (Vitest) for XP rules, mastery formula, FSRS integration, the syllabus parser, and the rate limiter
-  - Integration tests (Supertest + Testcontainers with a real Postgres)
+  - Integration tests (Testcontainers with a real Postgres; routes via Fastify `app.inject()`)
   - End-to-end tests (Playwright) for login, review, and solve flows
   - AI evals for each AI feature
 - **CI/CD:** Lint, typecheck, test, and build on every push. Run a small eval sample when prompts change. Preview deployments for the frontend.

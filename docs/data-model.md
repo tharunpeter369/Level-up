@@ -64,6 +64,7 @@ Moved from sections 6 and 7 of `skillforge-project-plan.md`. This file is now th
 | Method and path                 | Purpose                                                    | Phase |
 | ------------------------------- | ---------------------------------------------------------- | ----- |
 | `GET /health`                   | Liveness check                                             | 0     |
+| `GET /health/ready`             | Readiness: 200 if the database answers, else 503           | 0     |
 | `GET /auth/github` and callback | Login with GitHub                                          | 1     |
 | `POST /auth/logout`             | End session                                                | 1     |
 | `GET /syllabus`                 | Module and topic tree with your progress                   | 1     |
