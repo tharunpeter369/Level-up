@@ -17,6 +17,9 @@ export default tseslint.config(
     },
     rules: {
       "@typescript-eslint/no-explicit-any": "error",
+      // Fastify plugins and hooks are async by convention even without an `await`.
+      // The rule that catches real bugs (a *forgotten* await) is no-floating-promises, still on.
+      "@typescript-eslint/require-await": "off",
       "no-console": "warn",
     },
   },

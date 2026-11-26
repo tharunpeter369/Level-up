@@ -1,3 +1,12 @@
 packages:
   - "apps/*"
   - "packages/*"
+
+# pnpm blocks dependency install scripts by default (supply-chain safety).
+# Allow only what we need; deny the rest explicitly.
+allowBuilds:
+  esbuild: true # drizzle-kit uses it to load TypeScript config files
+  cpu-features: false # optional native speedup for SSH Docker connections (unused)
+  ssh2: false # same
+  protobufjs: false # version-check script only
+  lefthook: false # we install the git hooks explicitly via the root "prepare" script
