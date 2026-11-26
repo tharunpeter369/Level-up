@@ -13,3 +13,7 @@ test-results/
 
 # Claude Code personal settings
 .claude/settings.local.json
+
+# Next.js generated files
+next-env.d.ts
+*.tsbuildinfo
